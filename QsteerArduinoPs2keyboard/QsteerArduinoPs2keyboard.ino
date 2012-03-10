@@ -68,32 +68,36 @@ PS2Keyboard keyboard;
 char ch;
 
 void setup() {
-  delay(1000);
   pinMode(LED, OUTPUT);
+  digitalWrite(LED, HIGH);
+  delay(1000);
+  digitalWrite(LED, LOW);
   keyboard.begin(DataPin, IRQpin);
+  Serial.begin(9600);
   Serial.println("Keyboard Test:");
 }
 
 void loop() {
-  if (Serial.available()> 0) {
-    if (keyboard.available()) {
+  if (keyboard.available()) {
 
-      // read the next key
-      char ch = keyboard.read();
+    // read the next key
+    ch = keyboard.read();
 
-      // check for some of the special keys
-      if (ch == PS2_LEFTARROW) {
-        ch = '3';
-      } else if (ch == PS2_RIGHTARROW) {
-        ch = '4';
-      } else if (ch == PS2_UPARROW) {
-        ch = '1';
-      } else if (ch == PS2_DOWNARROW) {
-        ch = '2';
-      } else {
-        // do nothing
-      }
+    // check for some of the special keys
+    if (ch == PS2_LEFTARROW) {
+      ch = '3';
+    } else if (ch == PS2_RIGHTARROW) {
+      ch = '4';
+    } else if (ch == PS2_UPARROW) {
+      ch = '1';
+    } else if (ch == PS2_DOWNARROW) {
+      ch = '2';
+    } else {
+      // do nothing
     }
+    
+    Serial.print(ch);
+    
 
     switch (ch) {
       case '1':
