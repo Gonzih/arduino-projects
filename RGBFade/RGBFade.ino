@@ -7,7 +7,7 @@ int nextLed = 11;
 
 int limit = 200;
 int threshold = 50;
-int dl = 50;
+int dl = 100;
 
 // fade amount
 int fa = 5;
