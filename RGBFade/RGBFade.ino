@@ -5,7 +5,7 @@ int nextLed = 11; // next led, ignored in the cycle itself
 
 int fa = 1; // fade amount
 int limit = 255; // brightness limit
-int dl = 20; // delay between ticks
+int dl = 200; // delay between ticks
 
 void setup() {
   /* Serial.begin(9600); */
@@ -32,7 +32,6 @@ void fade() {
     analogWrite(currLed, i);
     delay(dl);
   }
-  delay(1000);
 }
 
 void swap() {
@@ -43,7 +42,7 @@ void swap() {
 }
 
 void loop() {
-  /* log(); */
+  delay(1000);
   fade();
   swap();
 }
