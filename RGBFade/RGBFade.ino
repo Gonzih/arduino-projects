@@ -1,14 +1,11 @@
-int tmp = 0;
+int tmp = 0; // temporary pin storage var
+int prevLed = 9; // previous led to fade out
+int currLed = 10; // current let to fade in
+int nextLed = 11; // next led, ignored in the cycle itself
 
-int prevLed = 9;
-int currLed = 10;
-int nextLed = 11;
-
-int limit = 255;
-int dl = 200;
-
-// fade amount
-int fa = 1;
+int fa = 1; // fade amount
+int limit = 255; // brightness limit
+int dl = 200; // delay between ticks
 
 void setup() {
   /* Serial.begin(9600); */
@@ -27,17 +24,23 @@ void log() {
   Serial.println("=============");
 }
 
-void loop() {
-  /* log(); */
+void fade() {
   for (int i = limit; i >= 0; i-=fa) {
     analogWrite(prevLed, limit-i);
     analogWrite(currLed, i);
     delay(dl);
   }
   delay(1000);
+}
 
+void swap() {
   tmp = prevLed;
   prevLed = currLed;
   currLed = nextLed;
   nextLed = tmp;
+}
+
+void loop() {
+  fade();
+  swap();
 }
