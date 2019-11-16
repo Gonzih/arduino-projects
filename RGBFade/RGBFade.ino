@@ -5,7 +5,7 @@ int currLed = 10;
 int nextLed = 11;
 
 int limit = 255;
-int dl = 50;
+int dl = 100;
 
 // fade amount
 int fa = 1;
@@ -17,7 +17,7 @@ void setup() {
 }
 
 void loop() {
-  for (int i = 0; i >= limit; i+=fa) {
+  for (int i = 0; i <= limit; i+=fa) {
     analogWrite(prevLed, limit-i);
     analogWrite(currLed, i);
     delay(dl);
